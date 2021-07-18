@@ -174,4 +174,4 @@ override.tf.json
 terraform.rc
 
 # Custom
-user_job.ipynb
+user_job_local.ipynb
