@@ -59,7 +59,7 @@ Para esse desafio foi utilizado o `terraform` com o objetivo de prover `infrastr
 É um formato de armazenamento colunar disponível em todos os projetos que pertencem ao ecossistema Hadoop, independente do modelo de processamento, framework ou linguagem usada. Outros pontos considerados para adoção do parquet, foram:
 
 * Compressão por colunas é mais eficiente
-* Algorítimo de compressão pode ser especificado por coluna
+* Algoritmo de compressão pode ser especificado por coluna
 * otimizado para trabalhar com estruturas de dados complexas em massa
 
 ### Docker [Execução Local]
