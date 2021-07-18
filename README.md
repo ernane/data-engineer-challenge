@@ -82,3 +82,9 @@ Serviços provisionados
 | localhost | 8084 | spark-worker-4 |
 
 ![spark](https://github.com/ernane/data-engineer-challenge/blob/main/assets/images/spark-master.png?raw=true)
+
+### Jupyter Notebook [Execução Local]
+
+[jupyther-notebook](https://github.com/ernane/data-engineer-challenge/blob/main/notebooks/users_job.ipynb)
+
+![jupyther-notebook](https://github.com/ernane/data-engineer-challenge/blob/main/assets/images/jupyter-notebook.png?raw=true)
