@@ -1,0 +1,106 @@
+version: "3.8"
+volumes:
+  shared-workspace:
+    name: "hadoop-distributed-file-system"
+    driver: local
+
+networks:
+  spark-network:
+    driver: bridge
+    name: spark-network
+
+services:
+  jupyterlab:
+    build:
+      context: .
+      target: jupyterlab
+      args:
+        jupyterlab_version: 3.0.16
+    container_name: jupyterlab    
+    ports:
+      - 8888:8888
+    volumes:
+      - shared-workspace:/opt/workspace
+    networks:
+      - spark-network
+
+  spark-master:
+    build:
+      context: .
+      target: spark_master
+    container_name: spark-master
+    ports:
+      - 8080:8080
+      - 7077:7077
+    volumes:
+      - shared-workspace:/opt/workspace
+    networks:
+      - spark-network
+
+  spark-worker-1:
+    build:
+      context: .
+      target: spark_worker
+    container_name: spark-worker-1
+    environment:
+      - SPARK_WORKER_CORES=2
+      - SPARK_WORKER_MEMORY=1024m
+    ports:
+      - 8081:8081
+    volumes:
+      - shared-workspace:/opt/workspace
+    networks:
+      - spark-network
+    depends_on:
+      - spark-master
+
+  spark-worker-2:
+    build:
+      context: .
+      target: spark_worker
+    container_name: spark-worker-2
+    environment:
+      - SPARK_WORKER_CORES=2
+      - SPARK_WORKER_MEMORY=1024m
+    ports:
+      - 8082:8081
+    volumes:
+      - shared-workspace:/opt/workspace
+    networks:
+      - spark-network
+    depends_on:
+      - spark-master
+
+  spark-worker-3:
+    build:
+      context: .
+      target: spark_worker
+    container_name: spark-worker-3
+    environment:
+      - SPARK_WORKER_CORES=2
+      - SPARK_WORKER_MEMORY=1024m
+    ports:
+      - 8083:8081
+    volumes:
+      - shared-workspace:/opt/workspace
+    networks:
+      - spark-network
+    depends_on:
+      - spark-master
+      
+  spark-worker-4:
+    build:
+      context: .
+      target: spark_worker
+    container_name: spark-worker-4
+    environment:
+      - SPARK_WORKER_CORES=2
+      - SPARK_WORKER_MEMORY=1024m
+    ports:
+      - 8084:8081
+    volumes:
+      - shared-workspace:/opt/workspace
+    networks:
+      - spark-network
+    depends_on:
+      - spark-master
